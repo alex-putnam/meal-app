@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>What's For Dinner App</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>What's For Dinner</h1>
+      <p>
+        Are you hungry and cant decide what to make. Search by ingredient to get suggestions or use the random generator
+        to give you the perfect idea
+      </p>
+      <form id="js-form">
+        <label for="food-search">Search for Cuisine with Ingredient:</label>
+        <input
+          type="text"
+          id="food-search"
+          placeholder="Enter food ingredient here"
+        />
+        <input type="button" class="food-btn" value="Get Food" /></br>
+        <label for="drink-search">Search for Drink with Ingredient:</label>
+        <input
+          type="text"
+          id="drink-search"
+          placeholder="Enter drink ingredient here"
+        />
+        <input type="button" class="drink-btn" value="Get Drink" /></br>
+        <button type="button" class="btn-random">Random Meal</button>
+        <p id="js-error-message" class="error-message"></p>
+      </form>
+      <section id="food-results" class="hidden"></section>
+      <section id="drink-results" class="hidden"></section>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
