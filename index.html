@@ -9,28 +9,32 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>What's For Dinner</h1>
+    <header>
+      <h1>What's For Dinner?</h1>
       <p>
-        Are you hungry and cant decide what to make. Search by ingredient to get suggestions or use the random generator
-        to give you the perfect idea
+        Tired of making the same old meals and same old drinks.<br />
+        Rediscover your palette and discover something fresh.<br />
+        Search below by a specific ingredient for either cuisine or beverage,
+        and get a list of options to choose from.<br />
+        Use the Random generator and we will come up with a perfect pairing for
+        you.<br />
       </p>
+    </header>
+    <div class="container">
       <form id="js-form">
-        <label for="food-search">Search for Cuisine with Ingredient:</label>
         <input
           type="text"
           id="food-search"
-          placeholder="Enter food ingredient here"
+          placeholder="Cuisine ingredient here"
         />
-        <input type="button" class="food-btn" value="Get Food" /></br>
-        <label for="drink-search">Search for Drink with Ingredient:</label>
+        <input type="button" class="food-btn" value="Search" /><br />
         <input
           type="text"
           id="drink-search"
-          placeholder="Enter drink ingredient here"
+          placeholder="Beverage ingredient here"
         />
-        <input type="button" class="drink-btn" value="Get Drink" /></br>
-        <button type="button" class="btn-random">Random Meal</button>
+        <input type="button" class="drink-btn" value="Search" /><br />
+        <button type="button" class="btn-random">Random Pairing</button>
         <p id="js-error-message" class="error-message"></p>
       </form>
       <section id="food-results" class="hidden"></section>

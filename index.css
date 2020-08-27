@@ -1,18 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap");
+
 * {
   box-sizing: border-box;
+  text-align: center;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  background-image: url(images/dining_table.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  font-family: "PT Sans", sans-serif;
 }
 
 input {
   margin: 5px;
-}
-
-button,
-input[type="text"] {
-  padding: 5px;
 }
 
 button:hover {
@@ -20,17 +23,71 @@ button:hover {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
+  background: rgb(197, 183, 169, 0.9);
+  border-radius: 15px;
+  padding: 10px 15px 20px 15px;
+}
+
+header {
+  background-color: rgb(111, 82, 52, 0.95);
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  border-color: #201b18;
+  border-style: solid;
+  border-width: 10px;
+  padding: 10px 15px 20px 15px;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+#food-search,
+#drink-search {
+  width: 65%;
+  height: 2em;
+  padding: 1em;
+  float: center;
+}
+
+.food-btn,
+.drink-btn {
+  height: 2.25em;
+  float: center;
+}
+
+.btn-random {
+  margin: 1em;
+  height: 2.25em;
 }
 
 img {
   max-width: 25%;
   height: auto;
+  border-radius: 15px;
+}
+
+.img-main {
+  max-width: 50%;
+  height: auto;
+  border-radius: 15px;
 }
 
 .error-message {
   color: red;
+}
+
+li:empty {
+  display: none;
+}
+
+li {
+  text-align: left;
 }
 
 .hidden {

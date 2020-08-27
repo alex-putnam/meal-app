@@ -15,7 +15,7 @@ function displayFood(responseJson) {
   for (let i = 0; i < responseJson.meals.length; i++) {
     htmlString += `
     <h2>Cuisine</h2>
-    <img src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">
+    <img class="img-main" src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">
     <h3>${responseJson.meals[i].strMeal}</h3>
     <h4>Ingredients:</h4>
     <ul>`;
@@ -28,10 +28,7 @@ function displayFood(responseJson) {
           responseJson.meals[i]["strIngredient" + j]
         }</li>`;
     }
-    htmlString = htmlString
-      .replace("null ", "")
-      .replace("  ", "")
-      .replace(" ", "");
+    htmlString = htmlString.replace(/null /g, "").replace(/  /g, "");
     htmlString += `
       </ul>
       <h4>Directions:</h4>`;
@@ -53,7 +50,7 @@ function displayDrink(responseJson) {
   for (let i = 0; i < responseJson.drinks.length; i++) {
     htmlString += `
     <h2>Beverage</h2>
-    <img src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">
+    <img class="img-main" src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">
     <h3>${responseJson.drinks[i].strDrink}</h3>
     <h4>Ingredients:</h4>
     <ul>`;
@@ -66,7 +63,7 @@ function displayDrink(responseJson) {
           responseJson.drinks[i]["strIngredient" + j]
         } </li>`;
     }
-    htmlString = htmlString.replace("null ", "");
+    htmlString = htmlString.replace(/null/g, "");
     htmlString += `
       </ul>
       <h4>Directions:</h4>
@@ -104,16 +101,14 @@ function displayFoodOptions(responseJson) {
   let htmlString = `
   <h2>Cuisine Options:</h2>
   <p>(Click on Image to get recipe)</p>
-  <ul>`;
+  <div class="options">`;
   for (let i = 0; i < responseJson.meals.length; i++) {
     htmlString += `
-      <li>
         <h3>${responseJson.meals[i].strMeal}</h3>
-        <img src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">
-      </li>`;
+        <img src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">`;
   }
   htmlString += `
-  </ul>`;
+  </div>`;
   $("#food-results").append(htmlString);
   $("#food-results").removeClass("hidden");
   foodClick();
@@ -127,16 +122,14 @@ function displayDrinkOptions(responseJson) {
   let htmlString = `
   <h2>Beverage Options:</h2>
   <p>(Click on Image to get recipe)</p>
-  <ul>`;
+  <div class="options">`;
   for (let i = 0; i < responseJson.drinks.length; i++) {
     htmlString += `
-      <li>
-        <h3>${responseJson.drinks[i].strDrink}</h3>
-        <img src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">
-      </li>`;
+      <h3>${responseJson.drinks[i].strDrink}</h3>
+      <img src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">`;
   }
   htmlString += `
-  </ul>`;
+  </div>`;
   $("#drink-results").append(htmlString);
   $("#drink-results").removeClass("hidden");
   drinkClick();
@@ -205,7 +198,9 @@ function getFoodOptions(userFood) {
     })
     .then((responseJson) => displayFoodOptions(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(`Something went wrong: ${err.message}`);
+      $("#js-error-message").text(
+        "Something went wrong: Food Ingredient Not Found"
+      );
     });
 }
 
@@ -223,7 +218,9 @@ function getDrinkOptions(userDrink) {
     })
     .then((responseJson) => displayDrinkOptions(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(`Something went wrong: ${err.message}`);
+      $("#js-error-message").text(
+        "Something went wrong: Drink Ingredient Not Found"
+      );
     });
 }
 
@@ -243,6 +240,7 @@ function getRandomDrink() {
 function foodSubmit() {
   $("form").on("click", ".food-btn", function (event) {
     event.preventDefault();
+    $("#js-error-message").empty();
     const userFood = $("#food-search").val();
     getFoodOptions(userFood);
   });
@@ -253,6 +251,7 @@ function foodSubmit() {
 function drinkSubmit() {
   $("form").on("click", ".drink-btn", function (event) {
     event.preventDefault();
+    $("#js-error-message").empty();
     const userDrink = $("#drink-search").val();
     getDrinkOptions(userDrink);
   });
@@ -263,6 +262,7 @@ function drinkSubmit() {
 function randomClick() {
   $("form").on("click", ".btn-random", function (event) {
     event.preventDefault();
+    $("#js-error-message").empty();
     getRandomFood();
     getRandomDrink();
   });
