@@ -21,22 +21,25 @@
       </p>
     </header>
     <div class="container">
-      <form id="js-form">
+      <form id="food-form">
         <input
           type="text"
           id="food-search"
           placeholder="Cuisine ingredient here"
         />
-        <input type="button" class="food-btn" value="Search" /><br />
+        <input type="submit" class="food-btn" value="Search" /><br />
+        <p id="js-error-food" class="error-message"></p>
+      </form>
+      <form id="drink-form">
         <input
           type="text"
           id="drink-search"
           placeholder="Beverage ingredient here"
         />
-        <input type="button" class="drink-btn" value="Search" /><br />
-        <button type="button" class="btn-random">Random Pairing</button>
-        <p id="js-error-message" class="error-message"></p>
+        <input type="submit" class="drink-btn" value="Search" /><br />
+        <p id="js-error-drink" class="error-message"></p>
       </form>
+      <button type="button" class="btn-random">Random Pairing</button>
       <section id="food-results" class="hidden"></section>
       <section id="drink-results" class="hidden"></section>
     </div>

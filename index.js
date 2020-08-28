@@ -83,6 +83,27 @@ function foodClick() {
   });
 }
 
+//handle when user tabs over to choice and presses enter
+
+function enterChoice() {
+  $(document).on("keypress", function (event) {
+    try {
+      const code = event.keyCode ? event.keyCode : event.which;
+      const option = document.activeElement.childNodes[0].alt;
+      const item = document.activeElement.childNodes[0].className.split(" ")[1];
+      if (item == "food") {
+        if (code == 13 && option) {
+          getFoodChoice(option);
+        }
+      } else if (item == "drink") {
+        if (code == 13 && option) {
+          getDrinkChoice(option);
+        }
+      }
+    } catch (error) {}
+  });
+}
+
 //handles drink image click
 
 function drinkClick() {
@@ -105,13 +126,14 @@ function displayFoodOptions(responseJson) {
   for (let i = 0; i < responseJson.meals.length; i++) {
     htmlString += `
         <h3>${responseJson.meals[i].strMeal}</h3>
-        <img src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">`;
+        <a tabindex="${i}"><img class="img-options food" src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}"></a>`;
   }
   htmlString += `
   </div>`;
   $("#food-results").append(htmlString);
   $("#food-results").removeClass("hidden");
   foodClick();
+  enterChoice();
 }
 
 //displays users drink options from COCTAIL API and lets user click image to get drink choice
@@ -126,13 +148,14 @@ function displayDrinkOptions(responseJson) {
   for (let i = 0; i < responseJson.drinks.length; i++) {
     htmlString += `
       <h3>${responseJson.drinks[i].strDrink}</h3>
-      <img src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">`;
+      <a tabindex="${i}"><img class="img-options drink" src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}"></a>`;
   }
   htmlString += `
   </div>`;
   $("#drink-results").append(htmlString);
   $("#drink-results").removeClass("hidden");
   drinkClick();
+  enterChoice();
 }
 
 //gets users food choice from MEAL API
@@ -150,7 +173,7 @@ function getFoodChoice(foodChoice) {
     })
     .then((responseJson) => displayFood(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(`Something went wrong: ${err.message}`);
+      $("#js-error-food").text(`Something went wrong: ${err.message}`);
     });
 }
 
@@ -169,7 +192,7 @@ function getDrinkChoice(drinkChoice) {
     })
     .then((responseJson) => displayDrink(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(`Something went wrong: ${err.message}`);
+      $("#js-error-drink").text(`Something went wrong: ${err.message}`);
     });
 }
 
@@ -198,7 +221,7 @@ function getFoodOptions(userFood) {
     })
     .then((responseJson) => displayFoodOptions(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(
+      $("#js-error-food").text(
         "Something went wrong: Food Ingredient Not Found"
       );
     });
@@ -218,7 +241,7 @@ function getDrinkOptions(userDrink) {
     })
     .then((responseJson) => displayDrinkOptions(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(
+      $("#js-error-drink").text(
         "Something went wrong: Drink Ingredient Not Found"
       );
     });
@@ -238,9 +261,9 @@ function getRandomDrink() {
 //handles food ingredient click for get food options
 
 function foodSubmit() {
-  $("form").on("click", ".food-btn", function (event) {
+  $("#food-form").submit(function (event) {
     event.preventDefault();
-    $("#js-error-message").empty();
+    $("#js-error-food").empty();
     const userFood = $("#food-search").val();
     getFoodOptions(userFood);
   });
@@ -249,9 +272,9 @@ function foodSubmit() {
 //handles drink ingredient click for drink options
 
 function drinkSubmit() {
-  $("form").on("click", ".drink-btn", function (event) {
+  $("#drink-form").submit(function (event) {
     event.preventDefault();
-    $("#js-error-message").empty();
+    $("#js-error-drink").empty();
     const userDrink = $("#drink-search").val();
     getDrinkOptions(userDrink);
   });
@@ -260,9 +283,10 @@ function drinkSubmit() {
 //if random button is pressed
 
 function randomClick() {
-  $("form").on("click", ".btn-random", function (event) {
+  $(".btn-random").on("click", function (event) {
     event.preventDefault();
-    $("#js-error-message").empty();
+    $("#js-error-food").empty();
+    $("#js-error-drink").empty();
     getRandomFood();
     getRandomDrink();
   });
