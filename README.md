@@ -3,6 +3,7 @@
 This app was designed for an API Capstone project for the Thinkful.
 
 Live App: https://alex-putnam.github.io/meal-app/
+
 GitHub Repo: https://github.com/alex-putnam/meal-app
 
 ## **What's For Dinner? Description**
