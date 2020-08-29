@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=PT+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@562;700&family=Poppins:wght@500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -11,7 +11,7 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  font-family: "PT Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -46,7 +46,11 @@ header {
 
 h2 {
   font-family: "Dancing Script", cursive;
-  font-size: 42px;
+  font-size: 2.8em;
+  color: white;
+  background-color: #6f5234;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px;
 }
 
 h3,
@@ -60,8 +64,7 @@ h6 {
 }
 
 h1 {
-  text-transform: uppercase;
-  font-size: 72px;
+  font-size: 4em;
   font-family: "Dancing Script", cursive;
 }
 
@@ -72,8 +75,8 @@ h1 {
   padding: 1.1em;
   border-radius: 10px;
   float: center;
-  font-family: "PT Sans", sans-serif;
-  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7em;
 }
 
 .food-btn,
@@ -87,8 +90,8 @@ h1 {
   padding-right: 10px;
   float: center;
   cursor: pointer;
-  font-family: "PT Sans", sans-serif;
-  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .food-btn:hover,
@@ -107,8 +110,8 @@ h1 {
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
-  font-family: "PT Sans", sans-serif;
-  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .btn-random:hover {
@@ -147,4 +150,27 @@ li {
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: 4.2em;
+  }
+
+  #food-search,
+  #drink-search {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  h1 {
+    font-size: 4.9em;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  h1 {
+    font-size: 5.2em;
+  }
 }

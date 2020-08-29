@@ -9,7 +9,6 @@ const baseDrinkURL = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/`;
 //displays food from Meal API response
 
 function displayFood(responseJson) {
-  console.log(responseJson);
   $("#food-results").empty();
   let htmlString = "";
   for (let i = 0; i < responseJson.meals.length; i++) {
@@ -17,6 +16,7 @@ function displayFood(responseJson) {
     <h2>Cuisine</h2>
     <img class="img-main" src="${responseJson.meals[i].strMealThumb}" alt="${responseJson.meals[i].strMeal}">
     <h3>${responseJson.meals[i].strMeal}</h3>
+    <p><strong>Region:</strong> ${responseJson.meals[i].strArea}</p>
     <h4>Ingredients:</h4>
     <ul>`;
     for (let j = 1; j < 21; j++) {
@@ -44,7 +44,6 @@ function displayFood(responseJson) {
 //displays drink from Cocktail API response
 
 function displayDrink(responseJson) {
-  console.log(responseJson);
   $("#drink-results").empty();
   let htmlString = "";
   for (let i = 0; i < responseJson.drinks.length; i++) {
@@ -52,6 +51,7 @@ function displayDrink(responseJson) {
     <h2>Beverage</h2>
     <img class="img-main" src="${responseJson.drinks[i].strDrinkThumb}" alt="${responseJson.drinks[i].strDrink}">
     <h3>${responseJson.drinks[i].strDrink}</h3>
+    <p><strong>Type:</strong> ${responseJson.drinks[i].strCategory}</p>
     <h4>Ingredients:</h4>
     <ul>`;
     for (let j = 1; j < 21; j++) {
@@ -117,7 +117,6 @@ function drinkClick() {
 //displays users food options from MEAL API and lets user click image to get food choice
 
 function displayFoodOptions(responseJson) {
-  console.log(responseJson);
   $("#food-results").empty();
   let htmlString = `
   <h2>Cuisine Options:</h2>
@@ -139,7 +138,6 @@ function displayFoodOptions(responseJson) {
 //displays users drink options from COCTAIL API and lets user click image to get drink choice
 
 function displayDrinkOptions(responseJson) {
-  console.log(responseJson);
   $("#drink-results").empty();
   let htmlString = `
   <h2>Beverage Options:</h2>
@@ -161,7 +159,6 @@ function displayDrinkOptions(responseJson) {
 //gets users food choice from MEAL API
 
 function getFoodChoice(foodChoice) {
-  console.log(foodChoice);
   const search = "search.php?s=";
   const urlFoodChoice = baseFoodURL + search + foodChoice;
   fetch(urlFoodChoice)
@@ -180,7 +177,6 @@ function getFoodChoice(foodChoice) {
 //gets users drink choice from COCTAIL API
 
 function getDrinkChoice(drinkChoice) {
-  console.log(drinkChoice);
   const search = "search.php?s=";
   const urlDrinkChoice = baseDrinkURL + search + drinkChoice;
   fetch(urlDrinkChoice)
@@ -201,7 +197,6 @@ function getDrinkChoice(drinkChoice) {
 function getRandomFood() {
   const random = "random.php";
   const urlFood = baseFoodURL + random;
-  console.log(urlFood);
   fetch(urlFood)
     .then((response) => response.json())
     .then((responseJson) => displayFood(responseJson));
@@ -252,7 +247,6 @@ function getDrinkOptions(userDrink) {
 function getRandomDrink() {
   const random = "random.php";
   const urlDrink = baseDrinkURL + random;
-  console.log(urlDrink);
   fetch(urlDrink)
     .then((response) => response.json())
     .then((responseJson) => displayDrink(responseJson));
